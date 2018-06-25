@@ -21,7 +21,8 @@ exports.addPerson = (req, res) => {
                 state: req.body.state,
                 pincode: req.body.pincode,
                 country: req.body.country
-            }
+            },
+            createdBy: req.decoded.email
         }).save((err, data) => {
             if (err) {
                 res.json({
@@ -39,7 +40,8 @@ exports.addPerson = (req, res) => {
 }
 
 exports.getPersons = (req, res) => {
-    dbPerson.find({}, (err, data) => {
+    // console.log(req.decoded)
+    dbPerson.find({ createdBy: req.decoded.email }, (err, data) => {
         if (err) {
             res.json({
                 success: false,
