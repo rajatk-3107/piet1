@@ -63,7 +63,7 @@ exports.login = (req, res) => {
             } else if (!login || login == null) {
                 res.json({
                     success: false,
-                    msg: "Please login first."
+                    msg: "Please register first."
                 })
             } else if (login.password != req.body.password) {
                 res.json({
